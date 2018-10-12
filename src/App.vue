@@ -2,7 +2,7 @@
   <div id="app">
     <AppNavbar></AppNavbar>
     <section class="main section">
-
+      <router-view></router-view>
     </section>
     <AppFooter></AppFooter>
   </div>
@@ -24,3 +24,17 @@ export default {
   },
 };
 </script>
+<style>
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.main {
+      padding: 40px 15px 0;
+}
+</style>
+
