@@ -6,7 +6,7 @@
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav class="ml-auto">
         <b-nav-item to="/category/front-end" >Front End</b-nav-item>
-        <b-nav-item to="/category/mobile" >Mobile</b-nav-item>
+        <b-nav-item :to="{ name: 'category' , params: { id: 'mobile'}}" >Mobile</b-nav-item>
         <b-nav-item to="/login">Login</b-nav-item>
       </b-navbar-nav>
     </b-collapse>

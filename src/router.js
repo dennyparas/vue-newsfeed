@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Category from './views/Category.vue';
 import Login from './views/Login.vue';
+import NotFound from './views/NotFound.vue';
 
 Vue.use(Router);
 
@@ -9,6 +10,12 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   linkActiveClass: 'active',
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    }
+    return { y: 0 };
+  },
   routes: [
     {
       path: '/',
@@ -23,6 +30,10 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login,
+    },
+    {
+      path: '*',
+      component: NotFound,
     },
   ],
 });
