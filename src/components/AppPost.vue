@@ -1,9 +1,7 @@
 <template>
-  <b-card :title="post.title">
-    <p class="card-text">
-      {{post.content | dataSubstr}}
-    </p>
-    <em slot="footer" ><a  class="card-link" :href="post.link" target="_blank">Read More</a></em>
+  <b-card :title="post.title.rendered">
+    <span class="card-text" v-html="this.$options.filters.dataSubstr(post.excerpt.rendered)"></span>
+    <em slot="footer" ><a  class="card-link" :href="post.rest_api_enabler.Link" target="_blank">Read More</a></em>
   </b-card>
 </template>
 
