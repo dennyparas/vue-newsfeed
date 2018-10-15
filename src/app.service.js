@@ -16,7 +16,7 @@ axios.interceptors.request.use((config) => {
 const appService = {
   async getPosts(categoryId) {
     try {
-      const response = await axios.get(`/wp-json/wp/v2/posts?categories=${categoryId}&per_page=6`);
+      const response = await axios.get(`/wp-json/wp/v2/posts?categories=${categoryId}&per_page=12`);
       return response.data;
     } catch (error) {
       throw error;

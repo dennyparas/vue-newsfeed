@@ -8,39 +8,33 @@
 </b-container>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 import AppPost from './../components/AppPost.vue';
-import appService from './../app.service';
+
 
 export default {
   name: 'home',
   components: {
     AppPost,
   },
-  data() {
-    return {
-      id: this.$route.params.id,
-      posts: [],
-    };
-  },
   created() {
     this.loadPost();
   },
+  computed: {
+    ...mapGetters('postsModule', ['posts']),
+  },
   watch: {
-    $route(to) {
-      this.id = to.params.id;
+    $route() {
       this.loadPost();
     },
   },
   methods: {
     loadPost() {
       let categoryId = 2;
-      if (this.id === 'mobile') {
+      if (this.$route.params.id === 'mobile') {
         categoryId = 11;
       }
-
-      appService.getPosts(categoryId).then((data) => {
-        this.posts = data;
-      });
+      this.$store.dispatch('postsModule/updateCategory', categoryId);
     },
   },
 };

@@ -3,8 +3,6 @@
     <b-row>
       <b-col v-if="isAuthenticated" lg="5" class="mx-auto">
         <h3>Hello</h3>
-        <p>Name: {{profile.firstName}}</p>
-         <p>Favorite Sandwich: {{profile.favoriteSandwich}}</p>
         <b-button class="btn btn-danger" @click="logout()">Log Out</b-button>
       </b-col>
       <b-col v-else lg="5" class="mx-auto">
@@ -26,7 +24,7 @@
 </template>
 
 <script>
-import appService from './../app.service';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Login',
@@ -34,47 +32,25 @@ export default {
     return {
       username: '',
       password: '',
-      isAuthenticated: false,
       profile: {},
     };
   },
+  computed: {
+    ...mapGetters('authenticationModule', ['isAuthenticated']),
+  },
   created() {
-    const expiration = window.localStorage.getItem('tokenExpiration');
-    const unixTimestamp = new Date().getTime() / 1000;
-    if (expiration !== null && parseInt(expiration, 10) - unixTimestamp > 0) {
-      this.isAuthenticated = true;
-    }
+    this.checkIfLogin();
   },
   watch: {
-    isAuthenticated(val) {
-      if (val) {
-        appService.getProfile()
-          .then((profile) => {
-            this.profile = profile;
-          });
-      } else {
-        this.profile = {};
-      }
-    },
   },
   methods: {
+    ...mapActions('authenticationModule', { logout: 'logout', checkIfLogin: 'checkIfLogin' }),
     login() {
-      appService.login({ username: this.username, password: this.password })
-        .then((data) => {
-          window.localStorage.setItem('token', data.token);
-          window.localStorage.setItem('tokenExpiration', data.expiration);
-          this.isAuthenticated = true;
+      this.$store.dispatch('login', { username: this.username, password: this.password })
+        .then(() => {
           this.username = '';
           this.password = '';
-        })
-        .catch(() => {
-          window.alert('Could not login');
         });
-    },
-    logout() {
-      window.localStorage.setItem('token', null);
-      window.localStorage.setItem('tokenExpiration', null);
-      this.isAuthenticated = false;
     },
   },
 };
