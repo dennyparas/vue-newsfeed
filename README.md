@@ -1,6 +1,11 @@
 # vue-newsfeed
 
-## Project setup
+## A web app created with vue,vuex and bootstrap-vue
+
+### Overview
+![vue-news-feed](https://user-images.githubusercontent.com/16351223/47059664-f0fee300-d1fc-11e8-88ed-36f4c8487df0.png)
+
+### Project setup
 ```
 npm install
 ```
@@ -15,17 +20,4 @@ npm run serve
 npm run build
 ```
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
+this web app is made using this [tutorial] (https://www.pluralsight.com/courses/vue-js-single-page-applications)
