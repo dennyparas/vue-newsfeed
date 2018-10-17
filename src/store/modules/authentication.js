@@ -35,7 +35,9 @@ const actions = {
         resolve();
       })
       .catch(() => {
-        window.alert('Could not login');
+        if (typeof window !== 'undefined') {
+          window.alert('Could not login');
+        }
       });
   }),
   checkIfLogin: (context) => {

@@ -1,8 +1,8 @@
 <template>
   <b-container>
     <b-row>
-      <b-col v-if="isAuthenticated" lg="5" class="mx-auto">
-        <h3>Hello</h3>
+      <b-col v-if="isAuthenticated" lg="5" class="mx-auto text-center">
+        <h3>Welcome to Vue News Feed! </h3>
         <b-button class="btn btn-danger" @click="logout()">Log Out</b-button>
       </b-col>
       <b-col v-else lg="5" class="mx-auto">
@@ -46,10 +46,12 @@ export default {
   methods: {
     ...mapActions('authenticationModule', { logout: 'logout', checkIfLogin: 'checkIfLogin' }),
     login() {
-      this.$store.dispatch('login', { username: this.username, password: this.password })
-        .then(() => {
-          this.username = '';
-          this.password = '';
+      this.$store.dispatch('authenticationModule/login', { username: this.username, password: this.password })
+        .then((data) => {
+          if (data) {
+            this.username = '';
+            this.password = '';
+          }
         });
     },
   },
