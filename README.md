@@ -5,6 +5,17 @@
 ### Overview
 ![vue-news-feed](https://user-images.githubusercontent.com/16351223/47059664-f0fee300-d1fc-11e8-88ed-36f4c8487df0.png)
 
+### Service Default api
+```
+https://api.fullstackweekly.com
+```
+
+### App Login username and password
+```
+username: bill 
+password: vuejs
+```
+
 ### Project setup
 ```
 npm install
